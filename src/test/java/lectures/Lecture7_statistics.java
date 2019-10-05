@@ -12,28 +12,46 @@ import java.util.stream.Collectors;
 import mockdata.MockData;
 import org.junit.Test;
 
-public class Lecture7 {
+public class Lecture7_statistics {
 
   @Test
   public void count() throws Exception {
-
+    long count = MockData.getPeople().stream()
+            .filter(person -> person.getGender().equalsIgnoreCase("female")).count();
+    System.out.println(count);
   }
 
   @Test
   public void min() throws Exception {
-
+    List<Car> cars = MockData.getCars();
+    double min = cars.stream().filter(car -> car.getColor().equalsIgnoreCase("yellow"))
+            .mapToDouble(Car::getPrice)
+            .min()
+            .orElse(0);
+    System.out.println(min);
   }
 
   @Test
   public void max() throws Exception {
-
+    List<Car> cars = MockData.getCars();
+    double max = cars
+            .stream()
+            .filter(car -> car.getColor().equalsIgnoreCase("yellow"))
+            .mapToDouble(Car::getPrice)
+            .min()
+            .orElse(0);
+    System.out.println(max);
   }
 
 
   @Test
   public void average() throws Exception {
-    List<Car> cars = MockData.getCars();
-
+//    List<Car> cars = MockData.getCars();
+    ImmutableList<Car> cars = ImmutableList.of();
+    double averageCar = cars.stream().mapToDouble(Car::getPrice)
+            .average()
+            .orElse(0);
+    System.out.println(averageCar);
   }
 
   @Test

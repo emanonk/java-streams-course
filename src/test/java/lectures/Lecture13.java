@@ -1,13 +1,19 @@
 package lectures;
 
+import java.util.List;
 import java.util.stream.Collectors;
+
+import beans.Car;
 import mockdata.MockData;
+import org.assertj.core.util.Lists;
 import org.junit.Test;
 
 public class Lecture13 {
   @Test
   public void intermediateAndTerminalOperations() throws Exception {
-    System.out.println(
+
+      List<Car> myCars = Lists.newArrayList();
+      System.out.println(
         MockData.getCars()
             .stream()
             .filter(car -> {
@@ -16,6 +22,7 @@ public class Lecture13 {
             })
             .map(car -> {
               System.out.println("mapping car " + car);
+                myCars.add(car);
               return car.getPrice();
             })
             .map(price -> {
@@ -24,5 +31,6 @@ public class Lecture13 {
             })
             .collect(Collectors.toList())
     );
+      System.out.println(myCars.size());
   }
 }
